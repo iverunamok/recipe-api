@@ -12,7 +12,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch("https://www.food2fork.com/api/search?key={api_key}&q=sausage")
+    fetch("https://www.food2fork.com/api/search?key={api-key}&q=sausage")
       .then(res => res.json())
       .then(
         (result) => {
@@ -30,7 +30,18 @@ class App extends React.Component {
         <header className="App-header">
           <h1 className="App-title">Kelsey's Kitchen</h1>
         </header>
-        <Search />
+        <ul style={{listStyleType: "none"}}>
+                    {recipes.map(recipe => (
+                        <li key={recipe.recipe_id}>
+                            <p>{recipe.title}</p>
+                            <a href={recipe.f2f_url}>
+                                Check Out the recipe
+                            </a>
+                            <img src={recipe.image_url}>
+                            </img>
+                        </li>
+                    ))}
+                </ul>
       </div>
     );
   }
